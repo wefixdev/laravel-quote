@@ -12,13 +12,11 @@
         {
             "name": "Renan Picanço",
             "email": "renanpicanco@gmail.com",
-            "homepage": "https://github.com/wefixdev",
-            "role": "Developer"
+            "homepage": "https://github.com/wefixdev"
         }
     ],
     "require": {
         "php": "~7.2",
-        "ext-json": "*",
         "wefixdev/quote": "^0.1.0"
     },
     "require-dev": {
@@ -32,7 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Quote\\Laravel\\": "/tests"
+            "Quote\\Laravel\\Tests\\": "/tests"
         }
     },
     "scripts": {
