@@ -18,7 +18,7 @@
     ],
     "require": {
         "php": "~7.2",
-        "ext-json": "^7.4",
+        "ext-json": "*",
         "wefixdev/quote": "^0.1.0"
     },
     "require-dev": {
