@@ -3,14 +3,15 @@
 namespace Quote\Laravel\Repositories;
 
 use Carbon\Carbon;
-use Quote\Laravel\Models\Quote;
 
 class QuoteRepository
 {
     public static function createCache($quotes, $currencies)
     {
         try {
-            $cache = new Quote();
+            $modelClass = config('quote.model');
+
+            $cache = new $modelClass;
             $cache->date = !empty($quotes['date']) ? $quotes['date'] : Carbon::now();
             $cache->source = $quotes['source'];
             $cache->quotes = json_encode($quotes['quotes']);
@@ -18,7 +19,6 @@ class QuoteRepository
 
             return self::transform($cache, $currencies);
         } catch (\Exception $e) {
-            dd($e);
             throw new \Exception('Problem to save.');
         }
 
@@ -27,7 +27,9 @@ class QuoteRepository
 
     public static function getCache($source, $currencies, $date)
     {
-        $quote = Quote::where('source', $source)
+        $modelClass = config('quote.model');
+
+        $quote = $modelClass::where('source', $source)
             ->where('date', $date)
             ->first();
 
